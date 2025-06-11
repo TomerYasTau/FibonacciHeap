@@ -7,7 +7,12 @@
 public class FibonacciHeap
 {
 	public HeapNode min;
-	
+	public int c;
+	public int size;
+	public int numTrees;
+	public int totalLinks;
+	public int totalCuts;
+
 	/**
 	 *
 	 * Constructor to initialize an empty heap.
@@ -16,7 +21,8 @@ public class FibonacciHeap
 	 */
 	public FibonacciHeap(int c)
 	{
-		// should be replaced by student code
+		this.c = c;
+		this.min = null;
 	}
 
 	/**
@@ -28,7 +34,23 @@ public class FibonacciHeap
 	 */
 	public HeapNode insert(int key, String info) 
 	{    
-		return null; // should be replaced by student code
+		HeapNode insertedNode = new HeapNode(key, info);
+		if (this.min == null) 
+			this.min = insertedNode;
+
+		else {
+		if (insertedNode.key < this.min.key) 
+			this.min = insertedNode;
+		HeapNode temp = this.min.next;
+		this.min.next = insertedNode;
+		insertedNode.prev = this.min;
+		insertedNode.next = temp;
+		temp.prev = insertedNode;
+		}
+
+		this.size ++;
+		this.numTrees ++;
+		return insertedNode;
 	}
 
 	/**
@@ -38,7 +60,7 @@ public class FibonacciHeap
 	 */
 	public HeapNode findMin()
 	{
-		return null; // should be replaced by student code
+		return this.min; 
 	}
 
 	/**
@@ -107,9 +129,29 @@ public class FibonacciHeap
 	 */
 	public void meld(FibonacciHeap heap2)
 	{
-		return; // should be replaced by student code   		
+		if (this.min == null) {
+		this.min = heap2.min;
+		this.size = heap2.size;
+		this.numTrees = heap2.numTrees;
+		return;
 	}
+		if (heap2 == null || heap2.min == null)
+			return;
+		
+		HeapNode tempPrev = heap2.min.prev;
+		HeapNode tempNext = this.min.next;
+		
+		this.min.next = heap2.min;
+		heap2.min.prev = this.min;
+		tempPrev.next = tempNext;
+		tempNext.prev = tempPrev;
 
+		if (heap2.min.key < this.min.key)
+			this.min = heap2.min;
+		
+		this.size += heap2.size;
+		this.numTrees += heap2.numTrees;
+	}
 	/**
 	 * 
 	 * Return the number of elements in the heap
@@ -117,7 +159,7 @@ public class FibonacciHeap
 	 */
 	public int size()
 	{
-		return 46; // should be replaced by student code
+		return this.size; 
 	}
 
 
@@ -128,7 +170,7 @@ public class FibonacciHeap
 	 */
 	public int numTrees()
 	{
-		return 46; // should be replaced by student code
+		return this.numTrees; // should be replaced by student code
 	}
 
 	/**
@@ -143,5 +185,18 @@ public class FibonacciHeap
 		public HeapNode prev;
 		public HeapNode parent;
 		public int rank;
+		
+	public HeapNode(int key, String info) {
+		this.key = key;
+		this.info = info;
+		this.child = null;
+		this.parent = null;
+		this.rank = 0;
+
+		// מצביע לעצמו ברשימה – מתחילים כעץ בודד
+		this.next = this;
+		this.prev = this;
 	}
+	
+} 
 }
