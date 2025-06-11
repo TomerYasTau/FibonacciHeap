@@ -129,14 +129,15 @@ public class FibonacciHeap
 	 */
 	public void meld(FibonacciHeap heap2)
 	{
+		if (heap2 == null || heap2.min == null)
+			return;
+		
 		if (this.min == null) {
 		this.min = heap2.min;
 		this.size = heap2.size;
 		this.numTrees = heap2.numTrees;
 		return;
-	}
-		if (heap2 == null || heap2.min == null)
-			return;
+		}
 		
 		HeapNode tempPrev = heap2.min.prev;
 		HeapNode tempNext = this.min.next;
