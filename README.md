@@ -25,7 +25,7 @@ FibonacciHeapProject/
 - Before pushing to `main`, changes should be merged via pull request or tested locally.
 
 ## 🧪 Experimental Part
-- Will be documented in a separate PDF (`FibonacciHeap_username1_username2.pdf`) as required.
+- Will be documented in a separate PDF (`FibonacciHeap_yasqulka_oferdadia.pdf`) as required.
 - Code related to the experiments may be kept locally and does not need to be submitted.
 
 ## 📦 Build & Run
@@ -34,13 +34,6 @@ You can compile the code using:
 javac src/FibonacciHeap.java
 ```
 Run your tests separately, or include a local `main` (not submitted).
-
-## 📄 info.txt format
-The file should include:
-```
-Tomer Fullname, ID: XXXXXXXX, Username: yourusername
-Ofer Fullname, ID: YYYYYYYY, Username: hisusername
-```
 
 ---
 
